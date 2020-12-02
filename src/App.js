@@ -39,9 +39,7 @@ users = [
                     if (index % 2){
                         className = 'two';
                     }
-                    return(
-                        <UserArrey user={value} key={index} someClass={className}/>
-                    )
+                    return(<UserArrey user={value} key={index} someClass={className}/>)
                 })
             }
 
