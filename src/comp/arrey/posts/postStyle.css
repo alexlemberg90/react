@@ -1,0 +1,11 @@
+.on{
+    display: block;
+}
+.off{
+    display: none;
+}
+.display{
+    display: flex;
+    border-color: chocolate;
+    border-style: solid;
+}
