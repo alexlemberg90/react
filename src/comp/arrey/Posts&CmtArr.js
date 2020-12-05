@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
 import PostsInfo from "./posts/postsInfo";
 import CommentsInfo from "./comments/commentsInfo";
-import {Service} from "../../service/Service";
+import {PostsService} from "../../service/postsService";
+import {CmtService} from "../../service/cmtService";
 
 class PostsCmtArr extends Component {
 
-    getService = new Service()
+    getCmtService = new CmtService()
+    getPostsService = new PostsService()
     state = {posts: [], comments: []};
 
     componentDidMount() {
-        this.getService.getPosts().then(postsAPI =>
+        this.getPostsService.getPosts().then(postsAPI =>
             this.setState({posts: postsAPI}));
-        this.getService.getCmt().then(commentsAPI =>
+        this.getCmtService.getCmt().then(commentsAPI =>
             this.setState({comments: commentsAPI}));
     };
 
