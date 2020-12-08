@@ -4,7 +4,7 @@
 .off{
     display: none;
 }
-.display{
+.postBord{
     display: flex;
     border-color: chocolate;
     border-style: solid;

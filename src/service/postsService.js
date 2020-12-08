@@ -1,9 +1,10 @@
 export class PostsService {
-postsUrl = 'https://jsonplaceholder.typicode.com/posts';
+   postsUrl = 'https://jsonplaceholder.typicode.com/posts';
 
-getPosts (){
-   return  fetch(this.postsUrl)
-        .then(value => value.json())
-        .then(postsAPI => postsAPI);
-}
+   async getPosts (){
+      return await fetch(this.postsUrl)
+           .then(value => value.json())
+
+   }
+
 }

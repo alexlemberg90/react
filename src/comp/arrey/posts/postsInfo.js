@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './postStyle.css'
+import {Link, withRouter} from "react-router-dom";
 
 class PostsInfo extends Component {
     state = {postOn:"off"}
@@ -15,11 +16,10 @@ class PostsInfo extends Component {
     }
 
     render() {
-
-        let {info} = this.props
+        let {info,match:{url}} = this.props
         let {postOn} = this.state
         return (
-            <div className={'display'}>
+            <div className={'postBord'}>
                 {info.userId}
                 <br/>
                 {info.title}
@@ -27,10 +27,12 @@ class PostsInfo extends Component {
 
                 <br/>
                 <div className={postOn}>{info.body} </div>
+                <Link to={`${url}/${info.id}`}>More</Link>
+
 
             </div>
         );
     }
 }
 
-export default PostsInfo;
+export default withRouter(PostsInfo);

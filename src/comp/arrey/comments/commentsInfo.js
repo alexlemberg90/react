@@ -18,7 +18,7 @@ class CommentsArr extends Component {
         let {info} = this.props;
         let {cmtOn} = this.state;
         return (
-            <div>
+            <div className={'cmtBord'}>
                 {info.postId}-{info.name}
                 <br/>
                 {info.email}

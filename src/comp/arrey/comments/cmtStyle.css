@@ -4,3 +4,8 @@
 .off{
     display: none;
 }
+.cmtBord{
+    display: flex;
+    border-color: seagreen;
+    border-style: solid;
+}
