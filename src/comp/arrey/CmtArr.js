@@ -8,7 +8,7 @@ class CmtArr extends Component {
     state = {comments: []};
 
     async componentDidMount() {
-        let comments = await this.getCmtService.getCmt();
+        let comments = await this.getCmtService.getCmts();
         this.setState({comments});
     };
 
@@ -18,11 +18,11 @@ class CmtArr extends Component {
             <div>
                 <h1>Comments List</h1>
                 {
-                    comments.map(value => (<CommentsInfo info={value} key={value.id}/>))
+                   comments && comments.map(value => (<CommentsInfo info={value} key={value.id}/>))
                 }
             </div>
         );
     };
-};
+}
 
 export default CmtArr;

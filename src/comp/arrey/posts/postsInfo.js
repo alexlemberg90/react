@@ -3,16 +3,17 @@ import './postStyle.css'
 import {Link, withRouter} from "react-router-dom";
 
 class PostsInfo extends Component {
-    state = {postOn:"off"}
-    no = true;
+    state = {postOn:false}
+
 
     hidenPost =()=>{
-        if (this.no){
-            this.setState({postOn:'on'})
+        const {postOn} = this.state;
+        if (postOn){
+            this.setState({postOn: false})
         }else {
-            this.setState({postOn:'off'})
+            this.setState({postOn: true})
         }
-        this.no = !this.no
+
     }
 
     render() {
@@ -24,9 +25,8 @@ class PostsInfo extends Component {
                 <br/>
                 {info.title}
                 <button onClick={this.hidenPost}>More</button>
-
                 <br/>
-                <div className={postOn}>{info.body} </div>
+                {postOn && <div>{info.body} </div>}
                 <Link to={`${url}/${info.id}`}>More</Link>
 
 

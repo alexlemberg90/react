@@ -1,33 +1,39 @@
 import React, {Component} from 'react';
 import './cmtStyle.css'
+import {CmtService} from "../../../service/cmtService";
 
 class CommentsArr extends Component {
-    state = {cmtOn:"off"}
-    no = true;
+    state = {cmtOn:false,cmt: null}
+    cmtServise = new CmtService()
 
     hidenCmt =()=>{
-        if (this.no){
-            this.setState({cmtOn:'on'})
+        const {cmtOn} = this.state
+        if (cmtOn){
+            this.setState({cmtOn: false})
         }else {
-            this.setState({cmtOn:'off'})
+            this.setState({cmtOn: true})
         }
-        this.no = !this.no
     }
-
+    async componentDidMount(){
+        let {match:{params:{id}}} = this.props
+        let cmt = await this.cmtServise.getCmt(id)
+        this.setState({cmt})
+    }
+    l
     render() {
+
         let {info} = this.props;
-        let {cmtOn} = this.state;
+        let {cmtOn,cmt} = this.state;
         return (
             <div className={'cmtBord'}>
-                {info.postId}-{info.name}
-                <br/>
-                {info.email}
-                <button onClick={this.hidenCmt}>Read</button>
-                <br/>
-                <div className={cmtOn}>
-                    {info.body}
-                </div>
-
+                {cmt && <div>{cmt.name}
+                    <br/>
+                {cmt.email}
+                    <button onClick={this.hideninfo}>Read</button>
+                    <br/>
+                {cmtOn &&<div>{cmt.body}</div>}
+                    </div>
+                }
             </div>
         );
     }
