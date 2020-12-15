@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './cmtStyle.css'
 import {CmtService} from "../../../service/cmtService";
 
-class CommentsArr extends Component {
+class CommentsInfo extends Component {
     state = {cmtOn:false,cmt: null}
     cmtServise = new CmtService()
 
@@ -23,20 +23,20 @@ class CommentsArr extends Component {
     render() {
 
         let {info} = this.props;
-        let {cmtOn,cmt} = this.state;
+        let {cmtOn} = this.state;
         return (
             <div className={'cmtBord'}>
-                {cmt && <div>{cmt.name}
+                <div>{info.name}
                     <br/>
-                {cmt.email}
+                {info.email}
                     <button onClick={this.hideninfo}>Read</button>
                     <br/>
-                {cmtOn &&<div>{cmt.body}</div>}
+                {cmtOn &&<div>{info.body}</div>}
                     </div>
-                }
+
             </div>
         );
     }
 }
 
-export default CommentsArr;
+export default CommentsInfo;

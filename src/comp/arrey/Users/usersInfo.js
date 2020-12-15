@@ -1,51 +1,29 @@
 import React, {Component} from 'react';
-// import '/comments/c'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    withRouter
-} from "react-router-dom";
-import PostsArr from "../PostsArr";
-import CmtArr from "../CmtArr";
-import CommentsArr from "../comments/commentsInfo";
+import {Link, Route, Switch, withRouter} from "react-router-dom";
+import UserDetail from "./userDetail";
+import {UsersService} from "../../../service/usersService";
 
 class UsersInfo extends Component {
 
-state = {cmtId:null};
+    getUserService = new UsersService();
+    state = {users:[]};
+
+    async componentDidMount() {
+        let users = await this.getUserService.getUsers();
+        this.setState({users})
+
+    };
 
     render() {
     let {user,match: {url}} = this.props;
-    let {cmtId} = this.state;
         return (
             <div>
                 {user.id} - {user.name}
-                {/*<div>*/}
-                {/*    <Link to={url+`/`+ user.id}><i>Posts</i></Link>*/}
-                {/*</div>*/}
-                {/*<div>*/}
-                {/*    <Link to={'/more'}>More Info</Link>*/}
-                {/*</div>*/}
-                <div>
-                    <Link to={url+`/`+ user.id}><i>Comments</i></Link>
-                </div>
 
-
-                <Switch>
-                    {/*<Route path={url + '/:id'} render={() => {*/}
-
-                    {/*    return <PostsArr/>;*/}
-                    {/*}}/>*/}
-                     <Route path={url + '/:id'} render={(props) => {
-                        let {match:{params:{id}}} = props
-                         cmtId = id
-                        return (user.id == cmtId && <CommentsArr {...props} key={cmtId}/>)
-                    }}/>
-                </Switch>
+              <button><Link to={url + '/' + user.id}>More Info</Link></button>
             </div>
         );
     }
 }
 
-export default withRouter (UsersInfo);
+export default withRouter(UsersInfo);

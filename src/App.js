@@ -14,25 +14,10 @@ class App extends Component {
                     <div>
                         <Link to={'/users'}><i>Users</i></Link>
                     </div>
-                    {/*<div>*/}
-                    {/*    <Link to={'/posts'}><i>Posts</i></Link>*/}
-                    {/*</div>*/}
-                    {/*<div>*/}
-                    {/*<Link to={'/comments'}><i>Comments</i></Link>*/}
-                    {/*</div>*/}
-
-
-
 
                     <Switch>
-                        <Route path={'/users'} render={() => {
+                        <Route path={'/users'} render={(props) => {
                             return <UsersArr/>;
-                        }}/>
-                        <Route path={'/posts'} render={() => {
-                            return <PostsArr/>;
-                        }}/>
-                        <Route path={'/comments'} render={() => {
-                            return <CmtArr/>
                         }}/>
                     </Switch>
                 </div>
