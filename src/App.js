@@ -1,51 +1,40 @@
 import React, {Component} from 'react';
+import {UserService} from "./comp/service/userService";
+import UserInfo from "./comp/arrey/userArrey";
 import UserArrey from "./comp/arrey/userArrey";
 
 class App extends Component {
 
-users = [
-    {
-      id: 1,
-      name: "Leanne Graham",
-      username: "Bret",
-        email: "Shanna@melissa.tv",
-      },
-    {
-      id: 2,
-      name: "Ervin Howell",
-      username: "Antonette",
-      email: "Shanna@melissa.tv",
-    },
-    {
-      id: 3,
-      name: "Clementine Bauch",
-      username: "Samantha",
-      email: "Nathan@yesenia.net",
-    },
-    {
-      id: 4,
-      name: "Patricia Lebsack",
-      username: "Karianne",
-      email: "Julianne.OConner@kory.org",
-    },
-  ];
+    state = {id:''};
 
-  render() {
-    return (
-        <div>
-            {
-                this.users.map((value,index)=>{
-                    let className = 'one'
-                    if (index % 2){
-                        className = 'two';
-                    }
-                    return(<UserArrey user={value} key={index} someClass={className}/>)
-                })
-            }
+    userId = React.createRef();
+    form = React.createRef();
 
-        </div>
-    );
-  }
+    render() {
+        let {user,id} = this.state
+        return (
+            <div>
+                <form onSubmit={this.send} ref={this.form}>
+                    <input type={'number'} onInput={this.getId} value={id}/>
+                    <button>finde</button>
+                    {id && <UserArrey userId={id}/>}
+                </form>
+                <hr/>
+
+            </div>
+
+        );
+    }
+
+
+    send = (e) => {
+        e.preventDefault()
+    }
+    getId = (e) =>{
+        this.setState({id: e.target.value});
+    }
+
+
 }
 
 export default App;
