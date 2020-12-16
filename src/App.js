@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {UserService} from "./comp/service/userService";
-import UserInfo from "./comp/arrey/userArrey";
 import UserArrey from "./comp/arrey/userArrey";
 
 class App extends Component {
