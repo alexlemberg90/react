@@ -4,18 +4,18 @@ import {UserService} from "../service/userService";
 class UserArrey extends Component {
 
     getUser = new UserService();
-    state = {user:[]};
+    state = {user:[],id: this.props.userId};
+
 
     async componentDidMount() {
-        let {userId} = this.props
-        let user = await this.getUser.getUsers(userId)
+        let user = await this.getUser.getUsers(this.state.id)
         this.setState({user})
-        console.log(userId)
+
     };
+
 
     render() {
         let {user} = this.state
-        console.log(user)
         return (
             <div>
 
