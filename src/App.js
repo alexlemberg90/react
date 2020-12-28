@@ -1,43 +1,14 @@
 import React, {useEffect, useReducer, useState} from "react";
+import{useSelector, useDispatch} from "react-redux"
 import "./App.css";
 
-const reducer = (state, action) => {
-    switch (action.type) {
-        case "SET_TODO": {
-            return action.payload;
-        }
-        case "CHANGE_TODO_STATUS": {
-            return {
-                ...state,
-                completed: !state.completed
-            };
-        }
-        case "CHANGE_TODO_TITLE": {
-            return {
-                ...state,
-                title: action.payload
-            };
-        }
-        default: {
-            console.error(`didn't found case for action:`, action);
-            return state;
-        }
-    }
-};
-
-const initialState = {
-    userId: null,
-    id: null,
-    title: "",
-    completed: false
-};
 
 export default function App() {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const state = useSelector((state) => state)
+    const dispatch = useDispatch()
     const [counter, setCounter] = useState(1);
 
     useEffect(() => {
-        console.log("i was called");
         fetch(`https://jsonplaceholder.typicode.com/todos/${counter}`)
             .then((response) => response.json())
             .then((json) => {
